@@ -1,5 +1,5 @@
 <h1>Add a Video</h1>
-
+<a href="#/">Home</a>
 <form>
     <div class="form-group">
         <label>Title</label>		
@@ -10,4 +10,8 @@
         <textarea class="form-control" ng-model="video.description"></textarea>
     </div>
     <input type="button" class="btn btn-primary" value="Save" ng-click="save()"></input>
+    <div class="form-group" style="visibility: hidden">
+    	<label>Picture</label>
+    	<input class="form-control" ng-model="video.picture" value={{video.title}}></input>
+    </div>
 </form>

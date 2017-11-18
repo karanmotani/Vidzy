@@ -11,13 +11,17 @@ app.config(['$routeProvider', function($routeProvider){
             controller: 'AddVideoCtrl'
         })
         .when('/video/:id', {
-        templateUrl: 'partials/video-form.html',
-        controller: 'EditVideoCtrl'
+            templateUrl: 'partials/video-form.html',
+            controller: 'EditVideoCtrl'
     	})
     	.when('/video/delete/:id', {
-        templateUrl: 'partials/video-delete.html',
-        controller: 'DeleteVideoCtrl'
+            templateUrl: 'partials/video-delete.html',
+            controller: 'DeleteVideoCtrl'
     	})
+        .when('/video/read/:id', {
+            templateUrl: 'partials/video-read.html',
+            controller: 'ReadVideoCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -71,4 +75,13 @@ app.controller('DeleteVideoCtrl', ['$scope', '$resource', '$location', '$routePa
                 $location.path('/');
             });
         }
+    }]);
+
+app.controller('ReadVideoCtrl', ['$scope', '$resource', '$location', '$routeParams',
+    function($scope, $resource, $location, $routeParams){
+        var Videos = $resource('/api/videos/:id');
+
+        Videos.get({ id: $routeParams.id }, function(video){
+            $scope.video = video;
+        })
     }]);

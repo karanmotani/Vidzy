@@ -2,13 +2,34 @@
 <p>
     <a href="/#/add-video">Add a Video</a>
 </p>
-<ul>
-    <li ng-repeat='video in videos'>
-        <a href="/#/video/{{video._id}}">
-            {{video.title}}
-        </a>
-        <a href="/#/video/delete/{{video._id}}">
-            <i class="glyphicon glyphicon-remove"></i>
-        </a>
-    </li>
-</ul>
+<table>
+	<tr>
+		<td>Title</td>
+		<td>Image</td>
+		<td>Edit</td>
+		<td>Delete</td>
+	</tr>
+
+    <tr ng-repeat='video in videos'>
+    	<td>
+	        <a href="/#/video/read/{{video._id}}">
+	            {{video.title}}
+	        </a>
+	    </td>
+        <td>
+	        <a href="/#/video/read/{{video._id}}">
+	           <img src='images/{{video.picture}}_tn.jpg' alt="Image not found" style="width:75px;height:100px;"/>
+	        </a>
+    	</td>
+        <td>
+	        <a href="/#/video/{{video._id}}">
+	           <i class="glyphicon glyphicon-pencil"></i>
+	        </a>
+	    </td>
+        <td>
+	        <a href="/#/video/delete/{{video._id}}">
+	            <i class="glyphicon glyphicon-remove"></i>
+	        </a>
+	   	</td>
+    </tr>
+</table>

@@ -6,7 +6,7 @@ var db = monk('localhost:27017/vidzy');
 
 router.get('/', function(req, res) {
     var collection = db.get('videos');
-    collection.find({}, function(err, videos){
+    collection.find({user: req.user.username}, function(err, videos){
         if (err) throw err;
       	res.json(videos);
     });
@@ -16,7 +16,9 @@ router.post('/', function(req, res){
     var collection = db.get('videos');
     collection.insert({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        picture: req.body.title,
+        user: req.user.username
     }, function(err, video){
         if (err) throw err;
 
@@ -40,7 +42,9 @@ router.put('/:id', function(req, res){
     },
     {
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        picture: req.body.title,
+        user: req.user.username
     }, function(err, video){
         if (err) throw err;
 
